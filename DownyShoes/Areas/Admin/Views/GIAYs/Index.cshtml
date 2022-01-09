@@ -1,0 +1,91 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<DownyShoes.Models.GIAY>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<a style="width:130px" class="btn btn-info" href="@Url.Action("Create", "GIAYs")">
+    Create New
+</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">
+                NAME
+            </th>
+            <th scope="col">
+                COST
+            </th>
+            <th scope="col">
+                IMAGE
+            </th>
+            <th scope="col">
+                DETAILS
+            </th>
+
+            <th>
+                PHƯƠNG THỨC
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+
+            string[] arr = item.DETAILS.Split(' ');
+
+            <tr>
+                <td scope="row">
+                    @Html.DisplayFor(modelItem => item.NAME)
+                </td>
+                <td scope="row">
+                    
+                    <p>@string.Format("{0:#,##0}", item.COST) VNĐ</p>
+                </td>
+                <td scope="row">
+                    <img style="width:100px" src="@item.IMAGE" />
+                </td>
+                <td scope="row">
+                    @{ string a = "";
+                        for (int i = 0; i < 8; i++)
+                        {
+                            a += arr[i];
+                            a += " ";
+                        }
+                    }
+                    @a.........
+                </td>
+                <td scope="row">
+                    <a style="width:80px" class="btn btn-success" href="@Url.Action("Edit", "GIAYs", new {id=item.ID})">
+                        Edit
+                    </a>
+                    <a style="width:80px" class="btn btn-warning" href="@Url.Action("Details", "GIAYs", new {id=item.ID})">
+                        Details
+                    </a>
+                    <a style="width:80px" class="btn btn-danger" href="@Url.Action("Delete", "GIAYs", new {id=item.ID})">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+<br />
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
+<div class="text-center">
+
+        @Html.PagedListPager(Model, page => Url.Action("Index",
+             new
+             {
+                 page = page
+
+             }))
+
+      
+   
+</div>
+

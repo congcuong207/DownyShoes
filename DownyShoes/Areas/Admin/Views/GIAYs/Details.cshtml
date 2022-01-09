@@ -1,0 +1,59 @@
+﻿@model DownyShoes.Models.GIAY
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <hr />
+    <dl>
+        <dt>
+            LOẠI GIÀY
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LoaiGiay.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NAME)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NAME)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.COST)
+        </dt>
+
+        <dd>
+            <p>@string.Format("{0:#,##0}", @Model.COST) VNĐ</p>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IMAGE)
+        </dt>
+
+        <dd>      
+            <img width="200" src="@Model.IMAGE" />
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DETAILS)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DETAILS)
+        </dd>
+
+    </dl>
+</div>
+<br />
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

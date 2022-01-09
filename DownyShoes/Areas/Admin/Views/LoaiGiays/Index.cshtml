@@ -1,0 +1,54 @@
+﻿@model IEnumerable<DownyShoes.Models.LoaiGiay>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{int i = 0; }
+
+<a style="width:130px" class="btn btn-info" href="@Url.Action("Create", "LoaiGiays")">
+    Create New
+</a>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">
+                STT
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.NAME)
+            </th>
+            <th scope="col">
+                PHƯƠNG THỨC
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            i++;
+        <tr>
+
+            <th scope="row">@i</th>
+            <td>
+                @Html.DisplayFor(modelItem => item.NAME)
+            </td>
+            <td>
+                <a style="width:80px" class="btn btn-success" href="@Url.Action("Edit", "LoaiGiays", new {id=item.ID})">
+                    Edit
+                </a>
+                <a style="width:80px" class="btn btn-warning" href="@Url.Action("Details", "LoaiGiays", new {id=item.ID})">
+                    Details
+                </a>
+                <a style="width:80px" class="btn btn-danger" href="@Url.Action("Delete", "LoaiGiays", new {id=item.ID})">
+                    Delete
+                </a>
+            </td>
+
+        </tr>
+    }
+    </tbody>
+
+
+</table>
